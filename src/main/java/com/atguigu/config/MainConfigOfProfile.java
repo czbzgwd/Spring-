@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.util.StringValueResolver;
 
+import com.atguigu.bean.Yellow;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
@@ -27,7 +28,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  * 2）、写在配置类上，只有是指定的环境的时候，整个配置类里面的所有配置才能开始生效
  * 3）、没有标注环境标识的bean在，任何环境下都是加载的；
  */
-
+@Profile("tes")
 @PropertySource("classpath:/dbconfig.properties")
 @Configuration
 public class MainConfigOfProfile implements EmbeddedValueResolverAware{
@@ -37,7 +38,12 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware{
 	private StringValueResolver valueResolver;
 	private String  driverClass;
 	
-	//@Profile("test")
+
+	@Bean
+	public Yellow yellow(){
+		return new Yellow();
+	}
+	@Profile("tes")//test这个标识可以随便写
 	@Bean("testDataSource")
 	public DataSource dataSourceTest(@Value("${db.password}")String pwd) throws Exception{
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -47,9 +53,7 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware{
 		dataSource.setDriverClass(driverClass);
 		return dataSource;
 	}
-	
-	
-	//@Profile("dev")
+	@Profile("dev")
 	@Bean("devDataSource")
 	public DataSource dataSourceDev(@Value("${db.password}")String pwd) throws Exception{
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -59,8 +63,7 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware{
 		dataSource.setDriverClass(driverClass);
 		return dataSource;
 	}
-	
-	//@Profile("prod")
+	@Profile("prod")
 	@Bean("prodDataSource")
 	public DataSource dataSourceProd(@Value("${db.password}")String pwd) throws Exception{
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -71,7 +74,6 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware{
 		dataSource.setDriverClass(driverClass);
 		return dataSource;
 	}
-
 	public void setEmbeddedValueResolver(StringValueResolver resolver) {
 		// TODO Auto-generated method stub
 		this.valueResolver = resolver;
