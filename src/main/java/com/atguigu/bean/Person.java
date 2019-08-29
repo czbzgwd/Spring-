@@ -1,6 +1,7 @@
 package com.atguigu.bean;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 public class Person {
 	//使用@Value赋值；
@@ -11,6 +12,7 @@ public class Person {
 	private String name;
 	@Value("#{20*2}")
 	private Integer age;
+	//通过${}引入配置文件中的值时，必须要在相关配置类行加上@PropertySource(value="classpath:/person.properties")
 	@Value("${person.nickName}")
 	private String nickName;
 	

@@ -20,7 +20,7 @@ public class ColorFactoryBean implements FactoryBean<Color> {
 	//false：多实例，每次获取都会创建一个新的bean；
 	public boolean isSingleton() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

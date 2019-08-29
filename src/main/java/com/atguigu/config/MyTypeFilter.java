@@ -25,7 +25,7 @@ public class MyTypeFilter implements TypeFilter {
 
 		String className = classMetadata.getClassName();
 		System.out.println("--->" + className);
-		if (className.contains("Book")) {
+		if (className.contains("er")) {
 			return true;
 		}
 

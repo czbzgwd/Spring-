@@ -10,18 +10,20 @@ import com.atguigu.bean.Color;
 import com.atguigu.bean.Red;
 import com.atguigu.config.MainConfigOfAOP;
 import com.atguigu.dao.BookDao;
+import com.atguigu.service.BookService;
+import com.atguigu.tx.TxConfig;
+import com.atguigu.tx.UserService;
 
-public class IOCTest_AOP {
+public class IOCTest_Tx {
 	
 	@Test
 	public void test01(){
 		AnnotationConfigApplicationContext applicationContext = 
-				new AnnotationConfigApplicationContext(MainConfigOfAOP.class);
-		//1、不要自己创建对象
-//		MathCalculator mathCalculator = new MathCalculator();
-//		mathCalculator.div(1, 1);
-		MathCalculator mathCalculator = applicationContext.getBean(MathCalculator.class);
-		mathCalculator.div(1, 0);
+				new AnnotationConfigApplicationContext(TxConfig.class);
+	
+		UserService userService = applicationContext.getBean(UserService.class);
+		
+		userService.insertUser();
 		applicationContext.close();
 	}
 

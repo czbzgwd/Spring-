@@ -14,7 +14,7 @@ public class BookService {
 	//@Qualifier("bookDao")
 	//@Autowired(required=false)
 	//@Resource(name="bookDao2")
-	@Inject
+	/*@Inject
 	private BookDao bookDao;
 
 	public void print(){
@@ -23,6 +23,6 @@ public class BookService {
 	@Override
 	public String toString() {
 		return "BookService [bookDao=" + bookDao + "]";
-	}
+	}*/
 	
 }

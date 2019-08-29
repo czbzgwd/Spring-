@@ -49,7 +49,7 @@ public class MainConfig2 {
 	 * 如果系统是windows，给容器中注册("bill")
 	 * 如果是linux系统，给容器中注册("linus")
 	 */
-//	@Conditional({WindowsCondition.class})
+	@Conditional({WindowsCondition.class})
 	@Bean("bill")
 	public Person person01(){
 		return new Person("Bill Gates",62);
