@@ -11,12 +11,13 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
-	//@Transactional
+	
+	@Transactional
 	public void insertUser(){
 		userDao.insert();
 		//otherDao.other();xxx
 		System.out.println("≤Â»ÎÕÍ≥…...");
-		//int i = 10/0;
+		int i = 10/0;
 	}
 
 }
